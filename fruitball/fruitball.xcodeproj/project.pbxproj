@@ -13,7 +13,6 @@
 		8B950D3A2BAC532000890EE0 /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 8B950D392BAC532000890EE0 /* Preview Assets.xcassets */; };
 		8B950D442BAC53B800890EE0 /* GameSceneView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8B950D402BAC53B700890EE0 /* GameSceneView.swift */; };
 		8B950D462BAC53B800890EE0 /* GameScene.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8B950D422BAC53B700890EE0 /* GameScene.swift */; };
-		8B950D492BAC7D4600890EE0 /* GameScene.sks in Resources */ = {isa = PBXBuildFile; fileRef = 8B950D482BAC7D4600890EE0 /* GameScene.sks */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -24,7 +23,6 @@
 		8B950D392BAC532000890EE0 /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
 		8B950D402BAC53B700890EE0 /* GameSceneView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GameSceneView.swift; sourceTree = "<group>"; };
 		8B950D422BAC53B700890EE0 /* GameScene.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GameScene.swift; sourceTree = "<group>"; };
-		8B950D482BAC7D4600890EE0 /* GameScene.sks */ = {isa = PBXFileReference; lastKnownFileType = file.sks; path = GameScene.sks; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -60,7 +58,6 @@
 				8B950D322BAC531D00890EE0 /* fruitballApp.swift */,
 				8B950D342BAC531D00890EE0 /* ContentView.swift */,
 				8B950D422BAC53B700890EE0 /* GameScene.swift */,
-				8B950D482BAC7D4600890EE0 /* GameScene.sks */,
 				8B950D402BAC53B700890EE0 /* GameSceneView.swift */,
 				8B950D362BAC532000890EE0 /* Assets.xcassets */,
 				8B950D382BAC532000890EE0 /* Preview Content */,
@@ -135,7 +132,6 @@
 			buildActionMask = 2147483647;
 			files = (
 				8B950D3A2BAC532000890EE0 /* Preview Assets.xcassets in Resources */,
-				8B950D492BAC7D4600890EE0 /* GameScene.sks in Resources */,
 				8B950D372BAC532000890EE0 /* Assets.xcassets in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

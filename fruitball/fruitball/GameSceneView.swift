@@ -9,21 +9,25 @@ import SwiftUI
 import SpriteKit
 
 struct GameSceneView: View {
+    
+    let screenWidth = UIScreen.main.bounds.width
+    let screenHeight = UIScreen.main.bounds.height
+    
     var scene: SKScene {
-        if let scene = SKScene(fileNamed: "GameScene") {
-            scene.scaleMode = .aspectFill
-            scene.view?.showsPhysics = true
-            
-              return scene
-        }
-            return SKScene()
-      }
+        let scene = GameScene()
+        scene.size = CGSize(width: 288, height: 512)
+        
+        scene.scaleMode = .fill
+        scene.backgroundColor = .white
+        
+        return scene
+    }
     
     var body: some View {
-        ZStack{
+        VStack {
             SpriteView(scene: scene)
-                .ignoresSafeArea()
-                .navigationBarBackButtonHidden(true)
+                .frame(width: screenWidth, height: screenHeight, alignment: .center)
+                .edgesIgnoringSafeArea(.all)
         }
     }
 }
