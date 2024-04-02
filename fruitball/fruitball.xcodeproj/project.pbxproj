@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		8B69E6662BB905B700C20413 /* SigmarOne-Regular.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 8B69E6652BB905B700C20413 /* SigmarOne-Regular.ttf */; };
+		8B69E6692BB9150400C20413 /* GameSceneHighscore.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8B69E6682BB9150400C20413 /* GameSceneHighscore.swift */; };
 		8B950D332BAC531D00890EE0 /* fruitballApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8B950D322BAC531D00890EE0 /* fruitballApp.swift */; };
 		8B950D352BAC531D00890EE0 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8B950D342BAC531D00890EE0 /* ContentView.swift */; };
 		8B950D372BAC532000890EE0 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 8B950D362BAC532000890EE0 /* Assets.xcassets */; };
@@ -16,6 +18,9 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		8B69E6652BB905B700C20413 /* SigmarOne-Regular.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "SigmarOne-Regular.ttf"; sourceTree = "<group>"; };
+		8B69E6672BB9066100C20413 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = Info.plist; sourceTree = "<group>"; };
+		8B69E6682BB9150400C20413 /* GameSceneHighscore.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameSceneHighscore.swift; sourceTree = "<group>"; };
 		8B950D2F2BAC531D00890EE0 /* fruitball.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = fruitball.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		8B950D322BAC531D00890EE0 /* fruitballApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = fruitballApp.swift; sourceTree = "<group>"; };
 		8B950D342BAC531D00890EE0 /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
@@ -55,9 +60,12 @@
 		8B950D312BAC531D00890EE0 /* fruitball */ = {
 			isa = PBXGroup;
 			children = (
+				8B69E6672BB9066100C20413 /* Info.plist */,
+				8B69E6652BB905B700C20413 /* SigmarOne-Regular.ttf */,
 				8B950D322BAC531D00890EE0 /* fruitballApp.swift */,
 				8B950D342BAC531D00890EE0 /* ContentView.swift */,
 				8B950D422BAC53B700890EE0 /* GameScene.swift */,
+				8B69E6682BB9150400C20413 /* GameSceneHighscore.swift */,
 				8B950D402BAC53B700890EE0 /* GameSceneView.swift */,
 				8B950D362BAC532000890EE0 /* Assets.xcassets */,
 				8B950D382BAC532000890EE0 /* Preview Content */,
@@ -133,6 +141,7 @@
 			files = (
 				8B950D3A2BAC532000890EE0 /* Preview Assets.xcassets in Resources */,
 				8B950D372BAC532000890EE0 /* Assets.xcassets in Resources */,
+				8B69E6662BB905B700C20413 /* SigmarOne-Regular.ttf in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -146,6 +155,7 @@
 				8B950D352BAC531D00890EE0 /* ContentView.swift in Sources */,
 				8B950D442BAC53B800890EE0 /* GameSceneView.swift in Sources */,
 				8B950D462BAC53B800890EE0 /* GameScene.swift in Sources */,
+				8B69E6692BB9150400C20413 /* GameSceneHighscore.swift in Sources */,
 				8B950D332BAC531D00890EE0 /* fruitballApp.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -283,11 +293,14 @@
 				DEVELOPMENT_TEAM = JZNPKB7CRS;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = fruitball/Info.plist;
+				INFOPLIST_KEY_LSApplicationCategoryType = "public.app-category.arcade-games";
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				IPHONEOS_DEPLOYMENT_TARGET = 16.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -312,11 +325,14 @@
 				DEVELOPMENT_TEAM = JZNPKB7CRS;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = fruitball/Info.plist;
+				INFOPLIST_KEY_LSApplicationCategoryType = "public.app-category.arcade-games";
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				IPHONEOS_DEPLOYMENT_TARGET = 16.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
