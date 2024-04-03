@@ -43,6 +43,7 @@ class GameScene: SKScene, SKPhysicsContactDelegate, GADFullScreenContentDelegate
     
     override func didMove(to view: SKView) {
         
+        
 #if DEBUG
     // Chave intersticial de teste
 InterstitialAd.shared.loadAd(withAdUnitId: "ca-app-pub-3940256099942544/8691691433")
@@ -63,6 +64,7 @@ InterstitialAd.shared.loadAd(withAdUnitId: "Sua chave de intersticial")
         chaoCampo.size = CGSize(width: 423 * 0.7, height: 180 * 0.7)
         chaoCampo.zPosition = -1
         addChild(chaoCampo)
+        animateChaoCampo()
         
         goal.position = CGPoint(x: size.width / 2, y: size.height / 2 - 55)
         goal.size = CGSize(width: 400 * 0.7, height: 227 * 0.7)
@@ -164,6 +166,28 @@ InterstitialAd.shared.loadAd(withAdUnitId: "Sua chave de intersticial")
         
     }
     
+    
+    func animateChaoCampo() {
+        // Defina a posição inicial abaixo da tela
+        chaoCampo.position = CGPoint(x: size.width / 2, y: -chaoCampo.size.height)
+        
+        // Defina a ação de movimento de baixo para cima
+        let moveUpAction = SKAction.moveTo(y: chaoCampo.size.height / 2, duration: 1.0)
+        moveUpAction.timingMode = .easeInEaseOut
+        
+        // Defina a ação de efeito "bouncy"
+        let bounceAction = SKAction.sequence([
+            SKAction.scale(to: 1.2, duration: 0.1),
+            SKAction.scale(to: 1.0, duration: 0.1)
+        ])
+        
+        // Combine as duas ações
+        let sequence = SKAction.sequence([moveUpAction, bounceAction])
+        
+        // Execute a sequência de ações no objeto
+        chaoCampo.run(sequence)
+    }
+    
     override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
         for t in touches { self.touchDown(atPoint: t.location(in: self)) }
     }
@@ -218,6 +242,7 @@ InterstitialAd.shared.loadAd(withAdUnitId: "Sua chave de intersticial")
         if spriteBall.position.y > heightInTouch * 1.2 && touch == true {
             score += 1
             touch = false
+            
             
             if score % 10 == 0 && score != 0{
                 if currentFruit < 2 {

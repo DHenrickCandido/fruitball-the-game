@@ -40,7 +40,7 @@ let rewardAdId = "Seu id de reward"
                fatalError("Crash was triggered")
             }
             
-            BannerAd(adUnitId: bannerAdId)
+//            BannerAd(adUnitId: bannerAdId)
             
             SpriteView(scene: scene)
                 .frame(width: screenWidth, height: screenHeight, alignment: .center)
