@@ -9,8 +9,9 @@ import SpriteKit
 import GameplayKit
 import SwiftUI
 import GameKit
+import GoogleMobileAds
 
-class GameScene: SKScene, SKPhysicsContactDelegate {
+class GameScene: SKScene, SKPhysicsContactDelegate, GADFullScreenContentDelegate {
     var kick = CGFloat(5)
     
     var rotation: CGFloat = 0.0
@@ -39,7 +40,17 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
     
     var start = false
     
+    
+    
     override func didMove(to view: SKView) {
+        
+#if DEBUG
+    // Chave intersticial de teste
+InterstitialAd.shared.loadAd(withAdUnitId: "ca-app-pub-3940256099942544/8691691433")
+#else
+InterstitialAd.shared.loadAd(withAdUnitId: "Sua chave de intersticial")
+#endif
+        
         self.view?.anchorPoint = CGPoint(x: 0.5, y: 0.5)
         self.physicsWorld.gravity = CGVector(dx: 0.0, dy: -9.8)
         
@@ -185,6 +196,23 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
         if spriteBall.position.y < -scene!.size.height * 1.3 {
             
             score = 0
+            
+            if let view = self.view {
+                backgroundImage.removeFromParent()
+                chaoCampo.removeFromParent()
+                goal.removeFromParent()
+                scoreNumberLabel.removeFromParent()
+                spriteBall.removeFromParent()
+                leg.removeFromParent()
+                start = false
+                
+                showIntersticialAd()
+                
+                let newScene = GameSceneHighscore(size: self.size) // Crie uma nova instância da GameScene
+                newScene.scaleMode = self.scaleMode // Configure o modo de escala da nova cena
+                newScene.highscore = highscore
+                view.presentScene(newScene, transition: .crossFade(withDuration: 1.0)) // Apresente a nova cena com uma transição opcional
+            }
             resetBallPosition()
             if let view = self.view {
                 self.removeAllChildren()
@@ -221,6 +249,13 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
 //        
         scoreNumberLabel.text =  String(format: "%02d", score)
 
+    }
+    
+    private func showIntersticialAd() {
+        if let ad = InterstitialAd.shared.interstitialAd {
+            ad.fullScreenContentDelegate = self
+            ad.present(fromRootViewController: self.view?.window?.rootViewController)
+        }
     }
 
     func resetBallPosition() {

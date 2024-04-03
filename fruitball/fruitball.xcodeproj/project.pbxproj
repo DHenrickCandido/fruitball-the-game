@@ -7,6 +7,14 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		250122802BBC4E91003F29DE /* FirebaseCrashlytics in Frameworks */ = {isa = PBXBuildFile; productRef = 2501227F2BBC4E91003F29DE /* FirebaseCrashlytics */; };
+		250122822BBC4E9A003F29DE /* FirebaseAnalytics in Frameworks */ = {isa = PBXBuildFile; productRef = 250122812BBC4E9A003F29DE /* FirebaseAnalytics */; };
+		250122842BBC4E9A003F29DE /* FirebaseAnalyticsSwift in Frameworks */ = {isa = PBXBuildFile; productRef = 250122832BBC4E9A003F29DE /* FirebaseAnalyticsSwift */; };
+		254D00CA2BBD7C0B00FB41B4 /* GoogleMobileAds in Frameworks */ = {isa = PBXBuildFile; productRef = 254D00C92BBD7C0B00FB41B4 /* GoogleMobileAds */; };
+		254D00CF2BBD7F3B00FB41B4 /* BannerAdView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 254D00CE2BBD7F3B00FB41B4 /* BannerAdView.swift */; };
+		254D00D12BBD7F6100FB41B4 /* RewardAdView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 254D00D02BBD7F6100FB41B4 /* RewardAdView.swift */; };
+		254D00D32BBD7F6A00FB41B4 /* IntersticialAdView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 254D00D22BBD7F6A00FB41B4 /* IntersticialAdView.swift */; };
+		2593154B2BBD8B36007491AF /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 250122852BBCA8D6003F29DE /* GoogleService-Info.plist */; };
 		8B69E6662BB905B700C20413 /* SigmarOne-Regular.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 8B69E6652BB905B700C20413 /* SigmarOne-Regular.ttf */; };
 		8B69E6692BB9150400C20413 /* GameSceneHighscore.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8B69E6682BB9150400C20413 /* GameSceneHighscore.swift */; };
 		8B950D332BAC531D00890EE0 /* fruitballApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8B950D322BAC531D00890EE0 /* fruitballApp.swift */; };
@@ -18,6 +26,10 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		250122852BBCA8D6003F29DE /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
+		254D00CE2BBD7F3B00FB41B4 /* BannerAdView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BannerAdView.swift; sourceTree = "<group>"; };
+		254D00D02BBD7F6100FB41B4 /* RewardAdView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RewardAdView.swift; sourceTree = "<group>"; };
+		254D00D22BBD7F6A00FB41B4 /* IntersticialAdView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = IntersticialAdView.swift; sourceTree = "<group>"; };
 		8B69E6652BB905B700C20413 /* SigmarOne-Regular.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "SigmarOne-Regular.ttf"; sourceTree = "<group>"; };
 		8B69E6672BB9066100C20413 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = Info.plist; sourceTree = "<group>"; };
 		8B69E6682BB9150400C20413 /* GameSceneHighscore.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameSceneHighscore.swift; sourceTree = "<group>"; };
@@ -36,17 +48,39 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				254D00CA2BBD7C0B00FB41B4 /* GoogleMobileAds in Frameworks */,
+				250122842BBC4E9A003F29DE /* FirebaseAnalyticsSwift in Frameworks */,
+				250122822BBC4E9A003F29DE /* FirebaseAnalytics in Frameworks */,
+				250122802BBC4E91003F29DE /* FirebaseCrashlytics in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		2501227E2BBC4E91003F29DE /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		254D00CD2BBD7F0600FB41B4 /* BannerAdView */ = {
+			isa = PBXGroup;
+			children = (
+				254D00D02BBD7F6100FB41B4 /* RewardAdView.swift */,
+				254D00CE2BBD7F3B00FB41B4 /* BannerAdView.swift */,
+				254D00D22BBD7F6A00FB41B4 /* IntersticialAdView.swift */,
+			);
+			path = BannerAdView;
+			sourceTree = "<group>";
+		};
 		8B950D262BAC531D00890EE0 = {
 			isa = PBXGroup;
 			children = (
 				8B950D312BAC531D00890EE0 /* fruitball */,
 				8B950D302BAC531D00890EE0 /* Products */,
+				2501227E2BBC4E91003F29DE /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -62,6 +96,8 @@
 			isa = PBXGroup;
 			children = (
 				8B69E66A2BBC41D500C20413 /* fruitball.entitlements */,
+				254D00CD2BBD7F0600FB41B4 /* BannerAdView */,
+				250122852BBCA8D6003F29DE /* GoogleService-Info.plist */,
 				8B69E6672BB9066100C20413 /* Info.plist */,
 				8B69E6652BB905B700C20413 /* SigmarOne-Regular.ttf */,
 				8B950D322BAC531D00890EE0 /* fruitballApp.swift */,
@@ -85,20 +121,38 @@
 		};
 /* End PBXGroup section */
 
+/* Begin PBXHeadersBuildPhase section */
+		250122872BBCAA74003F29DE /* Headers */ = {
+			isa = PBXHeadersBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXHeadersBuildPhase section */
+
 /* Begin PBXNativeTarget section */
 		8B950D2E2BAC531D00890EE0 /* fruitball */ = {
 			isa = PBXNativeTarget;
 			buildConfigurationList = 8B950D3D2BAC532000890EE0 /* Build configuration list for PBXNativeTarget "fruitball" */;
 			buildPhases = (
+				250122872BBCAA74003F29DE /* Headers */,
 				8B950D2B2BAC531D00890EE0 /* Sources */,
 				8B950D2C2BAC531D00890EE0 /* Frameworks */,
 				8B950D2D2BAC531D00890EE0 /* Resources */,
+				250122882BBCAB22003F29DE /* ShellScript */,
 			);
 			buildRules = (
 			);
 			dependencies = (
 			);
 			name = fruitball;
+			packageProductDependencies = (
+				2501227F2BBC4E91003F29DE /* FirebaseCrashlytics */,
+				250122812BBC4E9A003F29DE /* FirebaseAnalytics */,
+				250122832BBC4E9A003F29DE /* FirebaseAnalyticsSwift */,
+				254D00C92BBD7C0B00FB41B4 /* GoogleMobileAds */,
+			);
 			productName = fruitball;
 			productReference = 8B950D2F2BAC531D00890EE0 /* fruitball.app */;
 			productType = "com.apple.product-type.application";
@@ -127,6 +181,10 @@
 				Base,
 			);
 			mainGroup = 8B950D262BAC531D00890EE0;
+			packageReferences = (
+				2501227D2BBC4BED003F29DE /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */,
+				254D00C82BBD7C0B00FB41B4 /* XCRemoteSwiftPackageReference "swift-package-manager-google-mobile-ads" */,
+			);
 			productRefGroup = 8B950D302BAC531D00890EE0 /* Products */;
 			projectDirPath = "";
 			projectRoot = "";
@@ -141,6 +199,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				2593154B2BBD8B36007491AF /* GoogleService-Info.plist in Resources */,
 				8B950D3A2BAC532000890EE0 /* Preview Assets.xcassets in Resources */,
 				8B950D372BAC532000890EE0 /* Assets.xcassets in Resources */,
 				8B69E6662BB905B700C20413 /* SigmarOne-Regular.ttf in Resources */,
@@ -149,15 +208,43 @@
 		};
 /* End PBXResourcesBuildPhase section */
 
+/* Begin PBXShellScriptBuildPhase section */
+		250122882BBCAB22003F29DE /* ShellScript */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 12;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+				"${DWARF_DSYM_FOLDER_PATH}/${DWARF_DSYM_FILE_NAME}",
+				"${DWARF_DSYM_FOLDER_PATH}/${DWARF_DSYM_FILE_NAME}/Contents/Resources/DWARF/${PRODUCT_NAME}",
+				"${DWARF_DSYM_FOLDER_PATH}/${DWARF_DSYM_FILE_NAME}/Contents/Info.plist",
+				"$(TARGET_BUILD_DIR)/$(UNLOCALIZED_RESOURCES_FOLDER_PATH)/GoogleService-Info.plist",
+				"$(TARGET_BUILD_DIR)/$(EXECUTABLE_PATH)",
+			);
+			outputFileListPaths = (
+			);
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "${BUILD_DIR%Build/*}/SourcePackages/checkouts/firebase-ios-sdk/Crashlytics/run\n";
+		};
+/* End PBXShellScriptBuildPhase section */
+
 /* Begin PBXSourcesBuildPhase section */
 		8B950D2B2BAC531D00890EE0 /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				254D00D12BBD7F6100FB41B4 /* RewardAdView.swift in Sources */,
 				8B950D352BAC531D00890EE0 /* ContentView.swift in Sources */,
 				8B950D442BAC53B800890EE0 /* GameSceneView.swift in Sources */,
 				8B950D462BAC53B800890EE0 /* GameScene.swift in Sources */,
+				254D00CF2BBD7F3B00FB41B4 /* BannerAdView.swift in Sources */,
 				8B69E6692BB9150400C20413 /* GameSceneHighscore.swift in Sources */,
+				254D00D32BBD7F6A00FB41B4 /* IntersticialAdView.swift in Sources */,
 				8B950D332BAC531D00890EE0 /* fruitballApp.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -292,6 +379,7 @@
 				CODE_SIGN_ENTITLEMENTS = fruitball/fruitball.entitlements;
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
 				DEVELOPMENT_ASSET_PATHS = "\"fruitball/Preview Content\"";
 				DEVELOPMENT_TEAM = JZNPKB7CRS;
 				ENABLE_PREVIEWS = YES;
@@ -309,6 +397,7 @@
 					"@executable_path/Frameworks",
 				);
 				MARKETING_VERSION = 1.0;
+				OTHER_LDFLAGS = "-ObjC";
 				PRODUCT_BUNDLE_IDENTIFIER = com.candidohdiego.fruitball;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator";
@@ -344,6 +433,7 @@
 					"@executable_path/Frameworks",
 				);
 				MARKETING_VERSION = 1.0;
+				OTHER_LDFLAGS = "-ObjC";
 				PRODUCT_BUNDLE_IDENTIFIER = com.candidohdiego.fruitball;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator";
@@ -376,6 +466,48 @@
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
+
+/* Begin XCRemoteSwiftPackageReference section */
+		2501227D2BBC4BED003F29DE /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/firebase/firebase-ios-sdk.git";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 10.23.1;
+			};
+		};
+		254D00C82BBD7C0B00FB41B4 /* XCRemoteSwiftPackageReference "swift-package-manager-google-mobile-ads" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/googleads/swift-package-manager-google-mobile-ads";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 11.2.0;
+			};
+		};
+/* End XCRemoteSwiftPackageReference section */
+
+/* Begin XCSwiftPackageProductDependency section */
+		2501227F2BBC4E91003F29DE /* FirebaseCrashlytics */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 2501227D2BBC4BED003F29DE /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */;
+			productName = FirebaseCrashlytics;
+		};
+		250122812BBC4E9A003F29DE /* FirebaseAnalytics */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 2501227D2BBC4BED003F29DE /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */;
+			productName = FirebaseAnalytics;
+		};
+		250122832BBC4E9A003F29DE /* FirebaseAnalyticsSwift */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 2501227D2BBC4BED003F29DE /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */;
+			productName = FirebaseAnalyticsSwift;
+		};
+		254D00C92BBD7C0B00FB41B4 /* GoogleMobileAds */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 254D00C82BBD7C0B00FB41B4 /* XCRemoteSwiftPackageReference "swift-package-manager-google-mobile-ads" */;
+			productName = GoogleMobileAds;
+		};
+/* End XCSwiftPackageProductDependency section */
 	};
 	rootObject = 8B950D272BAC531D00890EE0 /* Project object */;
 }
