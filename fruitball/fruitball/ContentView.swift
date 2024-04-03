@@ -17,7 +17,7 @@ struct ContentView: View {
         }
         .padding()
         .onAppear {
-            RewardedAd.shared.loadAd(withAdUnitId: rewardAdId)
+//            RewardedAd.shared.loadAd(withAdUnitId: rewardAdId)
         }
     }
 }
