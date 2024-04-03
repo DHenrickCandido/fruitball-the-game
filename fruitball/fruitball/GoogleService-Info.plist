@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>API_KEY</key>
+	<string>AIzaSyAMd81ZZla1FiK6Ihr5uxUTiUO_fsR9HpI</string>
+	<key>GCM_SENDER_ID</key>
+	<string>109488290850</string>
+	<key>PLIST_VERSION</key>
+	<string>1</string>
+	<key>BUNDLE_ID</key>
+	<string>com.candidohdiego.fruitball</string>
+	<key>PROJECT_ID</key>
+	<string>fruiball</string>
+	<key>STORAGE_BUCKET</key>
+	<string>fruiball.appspot.com</string>
+	<key>IS_ADS_ENABLED</key>
+	<false></false>
+	<key>IS_ANALYTICS_ENABLED</key>
+	<false></false>
+	<key>IS_APPINVITE_ENABLED</key>
+	<true></true>
+	<key>IS_GCM_ENABLED</key>
+	<true></true>
+	<key>IS_SIGNIN_ENABLED</key>
+	<true></true>
+	<key>GOOGLE_APP_ID</key>
+	<string>1:109488290850:ios:6156a2edebd520e1df5e7b</string>
+</dict>
+</plist>
