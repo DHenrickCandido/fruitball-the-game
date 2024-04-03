@@ -8,14 +8,10 @@
 import Foundation
 
 import SpriteKit
+import GameKit
+import SwiftUI
 
 class GameSceneHighscore: SKScene, SKPhysicsContactDelegate {
-//    var previousScene: SKScene?
-
-    //    var ball: SKSpriteNode!
-    //    var leg: SKSpriteNode!
-    //    var scoreNumberLabel: SKLabelNode!
-    //    var highscoreNumberLabel: SKLabelNode!
     
     var kick = CGFloat(5)
     
@@ -38,17 +34,19 @@ class GameSceneHighscore: SKScene, SKPhysicsContactDelegate {
     let chaoCampo = SKSpriteNode(imageNamed: "chaoCampo")
     let goal = SKSpriteNode(imageNamed: "goal")
     let highscoreLabel = SKLabelNode(fontNamed: "SigmarOne-Regular")
-    
-    
+    var leaderboardButtonAdded = false
+
+    let leaderboardButton = UIButton(type: .custom)
+
     override func didMove(to view: SKView) {
         self.view?.anchorPoint = CGPoint(x: 0.5, y: 0.5)
         self.physicsWorld.gravity = CGVector(dx: 0.0, dy: -9.8)
-
+        
         chaoCampo.position = CGPoint(x: size.width / 2, y: 20)
         chaoCampo.size = CGSize(width: 423 * 0.7, height: 180 * 0.7)
         chaoCampo.zPosition = -1
         addChild(chaoCampo)
-            
+        
         highscoreLabel.text = "HIGHSCORE"
         highscoreLabel.fontSize = 30
         highscoreLabel.fontColor = UIColor(named: "ColorScoreGrey")
@@ -99,15 +97,52 @@ class GameSceneHighscore: SKScene, SKPhysicsContactDelegate {
         addChild(leg)
         
         self.physicsWorld.contactDelegate = self
-    }
-    
-    func touchDown(atPoint pos : CGPoint) {
-        if let view = self.view {
-            let newScene = GameScene(size: self.size)
-            newScene.scaleMode = self.scaleMode
-            view.presentScene(newScene, transition: .crossFade(withDuration: 1.0))
+        
+        leaderboardButton.setTitle("Leaderboard", for: .normal)
+        leaderboardButton.frame = CGRect(x: 140, y: 50, width: 120, height: 30)
+        leaderboardButton.backgroundColor = UIColor.blue
+        leaderboardButton.layer.cornerRadius = 10
+        leaderboardButton.titleLabel?.font = UIFont.boldSystemFont(ofSize: 16)
+        leaderboardButton.addTarget(self, action: #selector(showLeaderboard), for: .touchDown)
+        self.view?.addSubview(leaderboardButton)
+        
+//        let leaderboardButton = UIButton(type: .custom)
+//        leaderboardButton.setTitle("Leaderboard", for: .normal)
+//        leaderboardButton.frame = CGRect(x: 200, y: 50, width: 120, height: 50)
+//        leaderboardButton.backgroundColor = UIColor.blue
+//        leaderboardButton.layer.cornerRadius = 10
+//        leaderboardButton.addTarget(self, action: #selector(showLeaderboard), for: .touchDown)
+//        self.view?.addSubview(leaderboardButton)
+        
+        if !leaderboardButtonAdded {
+
+            
+            leaderboardButtonAdded = true
+        }
+        
+        if score > highscore {
+            highscore = score
+            
+            UserDefaults.standard.setValue(highscore, forKey: "highscore")
+            UserDefaults.standard.synchronize()
+            if GKLocalPlayer.local.isAuthenticated {
+                let score = GKScore(leaderboardIdentifier: "leaderboard")
+                score.value =  Int64(highscore)
+                GKScore.report([score]) { error in
+                    if let error = error {
+                        print("Erro ao enviar pontuação: \(error.localizedDescription)")
+                    } else {
+                        print("Pontuação enviada com sucesso!")
+                    }
+                }
+            }
         }
 
+    }
+    
+    
+    func touchDown(atPoint pos : CGPoint) {
+        touch = true
     }
     
     func touchMoved(toPoint pos : CGPoint) {
@@ -134,7 +169,48 @@ class GameSceneHighscore: SKScene, SKPhysicsContactDelegate {
         for t in touches { self.touchUp(atPoint: t.location(in: self)) }
     }
     
-    
+    override func willMove(from view: SKView) {
+        // Remover o botão da tela quando a cena for alterada
+//        leaderboardButton = nil
+    }
     override func update(_ currentTime: TimeInterval) {
+        
+        if touch == true {
+
+            self.removeAllChildren()
+            self.removeAllActions()
+            self.removeFromParent()
+            leaderboardButton.removeFromSuperview()
+
+            if let view = self.view {
+                let newScene = GameScene(size: self.size)
+                newScene.scaleMode = self.scaleMode
+                view.presentScene(newScene, transition: .crossFade(withDuration: 1.0))
+            }
+        }
+    }
+    
+    @objc func showLeaderboard() {
+        let viewController = self.view?.window?.rootViewController
+        let gcViewController = GKGameCenterViewController()
+        gcViewController.gameCenterDelegate = self
+        gcViewController.viewState = .leaderboards
+        gcViewController.leaderboardIdentifier = "leaderboard"
+        viewController?.present(gcViewController, animated: true, completion: nil)
+        
+        
+    }
+    
+    @objc func replay() {
+        touch = true
+    }
+
+}
+
+extension GameSceneHighscore: GKGameCenterControllerDelegate {
+    func gameCenterViewControllerDidFinish(_ gameCenterViewController: GKGameCenterViewController) {
+        gameCenterViewController.dismiss(animated: true, completion: nil)
     }
 }
+
+

@@ -21,6 +21,7 @@
 		8B69E6652BB905B700C20413 /* SigmarOne-Regular.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "SigmarOne-Regular.ttf"; sourceTree = "<group>"; };
 		8B69E6672BB9066100C20413 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = Info.plist; sourceTree = "<group>"; };
 		8B69E6682BB9150400C20413 /* GameSceneHighscore.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameSceneHighscore.swift; sourceTree = "<group>"; };
+		8B69E66A2BBC41D500C20413 /* fruitball.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = fruitball.entitlements; sourceTree = "<group>"; };
 		8B950D2F2BAC531D00890EE0 /* fruitball.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = fruitball.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		8B950D322BAC531D00890EE0 /* fruitballApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = fruitballApp.swift; sourceTree = "<group>"; };
 		8B950D342BAC531D00890EE0 /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
@@ -60,6 +61,7 @@
 		8B950D312BAC531D00890EE0 /* fruitball */ = {
 			isa = PBXGroup;
 			children = (
+				8B69E66A2BBC41D500C20413 /* fruitball.entitlements */,
 				8B69E6672BB9066100C20413 /* Info.plist */,
 				8B69E6652BB905B700C20413 /* SigmarOne-Regular.ttf */,
 				8B950D322BAC531D00890EE0 /* fruitballApp.swift */,
@@ -287,6 +289,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CODE_SIGN_ENTITLEMENTS = fruitball/fruitball.entitlements;
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_ASSET_PATHS = "\"fruitball/Preview Content\"";
@@ -308,9 +311,11 @@
 				MARKETING_VERSION = 1.0;
 				PRODUCT_BUNDLE_IDENTIFIER = com.candidohdiego.fruitball;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator";
+				SUPPORTS_MACCATALYST = NO;
 				SWIFT_EMIT_LOC_STRINGS = YES;
 				SWIFT_VERSION = 5.0;
-				TARGETED_DEVICE_FAMILY = "1,2";
+				TARGETED_DEVICE_FAMILY = 1;
 			};
 			name = Debug;
 		};
@@ -319,6 +324,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CODE_SIGN_ENTITLEMENTS = fruitball/fruitball.entitlements;
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_ASSET_PATHS = "\"fruitball/Preview Content\"";
@@ -340,9 +346,11 @@
 				MARKETING_VERSION = 1.0;
 				PRODUCT_BUNDLE_IDENTIFIER = com.candidohdiego.fruitball;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator";
+				SUPPORTS_MACCATALYST = NO;
 				SWIFT_EMIT_LOC_STRINGS = YES;
 				SWIFT_VERSION = 5.0;
-				TARGETED_DEVICE_FAMILY = "1,2";
+				TARGETED_DEVICE_FAMILY = 1;
 			};
 			name = Release;
 		};

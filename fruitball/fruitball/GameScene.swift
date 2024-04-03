@@ -8,6 +8,7 @@
 import SpriteKit
 import GameplayKit
 import SwiftUI
+import GameKit
 
 class GameScene: SKScene, SKPhysicsContactDelegate {
     var kick = CGFloat(5)
@@ -17,7 +18,7 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
     var initialPositionY: CGFloat = UIScreen.main.bounds.height - 300
     var initialPositionX: CGFloat = (UIScreen.main.bounds.width / 2) - 20
     
-    var score: Int = 0
+    var score = 0
     
     var touch = false
     var heightInTouch = 0.0
@@ -107,6 +108,16 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
         } else {
             spriteBall.physicsBody?.affectedByGravity = true
         }
+        
+        GKLocalPlayer.local.authenticateHandler = { viewController, error in
+            guard error == nil else {
+                print("Erro ao autenticar jogador: \(error!.localizedDescription)")
+                return
+            }
+            if let viewController = viewController {
+                self.view?.window?.rootViewController?.present(viewController, animated: true, completion: nil)
+            }
+        }
     }
     
     func didBegin(_ contact: SKPhysicsContact) {
@@ -171,34 +182,19 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
     
     
     override func update(_ currentTime: TimeInterval) {
-        // Verifica se a bola está fora da tela
         if spriteBall.position.y < -scene!.size.height * 1.3 {
-            // Reposiciona a bola para o início
-           
-            if score > highscore {
-                highscore = score
-                
-                UserDefaults.standard.setValue(highscore, forKey: "highscore")
-                UserDefaults.standard.synchronize()
-//                highscoreNumberLabel.text = String(highscore)
-            }
             
             score = 0
-            
-            if let view = self.view {
-                backgroundImage.removeFromParent()
-                chaoCampo.removeFromParent()
-                goal.removeFromParent()
-                scoreNumberLabel.removeFromParent()
-                spriteBall.removeFromParent()
-                leg.removeFromParent()
-                start = false
-                let newScene = GameSceneHighscore(size: self.size) // Crie uma nova instância da GameScene
-                newScene.scaleMode = self.scaleMode // Configure o modo de escala da nova cena
-                newScene.highscore = highscore
-                view.presentScene(newScene, transition: .crossFade(withDuration: 1.0)) // Apresente a nova cena com uma transição opcional
-            }
             resetBallPosition()
+            if let view = self.view {
+                self.removeAllChildren()
+                self.removeAllActions()
+                self.removeFromParent()
+                let newScene = GameSceneHighscore(size: self.size)
+                newScene.scaleMode = self.scaleMode
+                newScene.highscore = highscore
+                view.presentScene(newScene, transition: .crossFade(withDuration: 1.0))
+            }
         }
         
         if spriteBall.position.y > heightInTouch * 1.2 && touch == true {
@@ -212,12 +208,10 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
                     currentFruit = 0
                 }
                 spriteBall.texture = SKTexture(imageNamed: fruits[currentFruit])
-//                spriteBall.physicsBody = SKPhysicsBody(texture: spriteBall.texture! , size: spriteBall.size)
                 
             }
         }
         
-////        print(leg.zRotation)
         if leg.zRotation >= 2 {
             leg.zRotation = rotation
             leg.physicsBody?.angularVelocity = 0
@@ -240,7 +234,7 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
             leg.zRotation = rotation
             leg.physicsBody?.angularVelocity = 0
             touch = false
-
+            start = false
 
         }
     }
