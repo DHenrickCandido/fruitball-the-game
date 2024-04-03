@@ -12,6 +12,10 @@
 		250122842BBC4E9A003F29DE /* FirebaseAnalyticsSwift in Frameworks */ = {isa = PBXBuildFile; productRef = 250122832BBC4E9A003F29DE /* FirebaseAnalyticsSwift */; };
 		250122862BBCA8D6003F29DE /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 250122852BBCA8D6003F29DE /* GoogleService-Info.plist */; };
 		254D00CA2BBD7C0B00FB41B4 /* GoogleMobileAds in Frameworks */ = {isa = PBXBuildFile; productRef = 254D00C92BBD7C0B00FB41B4 /* GoogleMobileAds */; };
+		254D00CC2BBD7EEF00FB41B4 /* fruitball in Resources */ = {isa = PBXBuildFile; fileRef = 254D00CB2BBD7EEF00FB41B4 /* fruitball */; };
+		254D00CF2BBD7F3B00FB41B4 /* BannerAdView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 254D00CE2BBD7F3B00FB41B4 /* BannerAdView.swift */; };
+		254D00D12BBD7F6100FB41B4 /* RewardAdView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 254D00D02BBD7F6100FB41B4 /* RewardAdView.swift */; };
+		254D00D32BBD7F6A00FB41B4 /* IntersticialAdView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 254D00D22BBD7F6A00FB41B4 /* IntersticialAdView.swift */; };
 		8B69E6662BB905B700C20413 /* SigmarOne-Regular.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 8B69E6652BB905B700C20413 /* SigmarOne-Regular.ttf */; };
 		8B69E6692BB9150400C20413 /* GameSceneHighscore.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8B69E6682BB9150400C20413 /* GameSceneHighscore.swift */; };
 		8B950D332BAC531D00890EE0 /* fruitballApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8B950D322BAC531D00890EE0 /* fruitballApp.swift */; };
@@ -24,6 +28,10 @@
 
 /* Begin PBXFileReference section */
 		250122852BBCA8D6003F29DE /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
+		254D00CB2BBD7EEF00FB41B4 /* fruitball */ = {isa = PBXFileReference; lastKnownFileType = folder; name = fruitball; sourceTree = "<group>"; };
+		254D00CE2BBD7F3B00FB41B4 /* BannerAdView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BannerAdView.swift; sourceTree = "<group>"; };
+		254D00D02BBD7F6100FB41B4 /* RewardAdView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RewardAdView.swift; sourceTree = "<group>"; };
+		254D00D22BBD7F6A00FB41B4 /* IntersticialAdView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = IntersticialAdView.swift; sourceTree = "<group>"; };
 		8B69E6652BB905B700C20413 /* SigmarOne-Regular.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "SigmarOne-Regular.ttf"; sourceTree = "<group>"; };
 		8B69E6672BB9066100C20413 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = Info.plist; sourceTree = "<group>"; };
 		8B69E6682BB9150400C20413 /* GameSceneHighscore.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameSceneHighscore.swift; sourceTree = "<group>"; };
@@ -58,6 +66,16 @@
 			name = Frameworks;
 			sourceTree = "<group>";
 		};
+		254D00CD2BBD7F0600FB41B4 /* BannerAdView */ = {
+			isa = PBXGroup;
+			children = (
+				254D00D02BBD7F6100FB41B4 /* RewardAdView.swift */,
+				254D00CE2BBD7F3B00FB41B4 /* BannerAdView.swift */,
+				254D00D22BBD7F6A00FB41B4 /* IntersticialAdView.swift */,
+			);
+			path = BannerAdView;
+			sourceTree = "<group>";
+		};
 		8B950D262BAC531D00890EE0 = {
 			isa = PBXGroup;
 			children = (
@@ -78,6 +96,8 @@
 		8B950D312BAC531D00890EE0 /* fruitball */ = {
 			isa = PBXGroup;
 			children = (
+				254D00CD2BBD7F0600FB41B4 /* BannerAdView */,
+				254D00CB2BBD7EEF00FB41B4 /* fruitball */,
 				250122852BBCA8D6003F29DE /* GoogleService-Info.plist */,
 				8B69E6672BB9066100C20413 /* Info.plist */,
 				8B69E6652BB905B700C20413 /* SigmarOne-Regular.ttf */,
@@ -184,6 +204,7 @@
 				250122862BBCA8D6003F29DE /* GoogleService-Info.plist in Resources */,
 				8B950D372BAC532000890EE0 /* Assets.xcassets in Resources */,
 				8B69E6662BB905B700C20413 /* SigmarOne-Regular.ttf in Resources */,
+				254D00CC2BBD7EEF00FB41B4 /* fruitball in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -219,10 +240,13 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				254D00D12BBD7F6100FB41B4 /* RewardAdView.swift in Sources */,
 				8B950D352BAC531D00890EE0 /* ContentView.swift in Sources */,
 				8B950D442BAC53B800890EE0 /* GameSceneView.swift in Sources */,
 				8B950D462BAC53B800890EE0 /* GameScene.swift in Sources */,
+				254D00CF2BBD7F3B00FB41B4 /* BannerAdView.swift in Sources */,
 				8B69E6692BB9150400C20413 /* GameSceneHighscore.swift in Sources */,
+				254D00D32BBD7F6A00FB41B4 /* IntersticialAdView.swift in Sources */,
 				8B950D332BAC531D00890EE0 /* fruitballApp.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

@@ -8,8 +8,9 @@
 import SpriteKit
 import GameplayKit
 import SwiftUI
+import GoogleMobileAds
 
-class GameScene: SKScene, SKPhysicsContactDelegate {
+class GameScene: SKScene, SKPhysicsContactDelegate, GADFullScreenContentDelegate {
     var kick = CGFloat(5)
     
     var rotation: CGFloat = 0.0
@@ -38,7 +39,17 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
     
     var start = false
     
+    
+    
     override func didMove(to view: SKView) {
+        
+#if DEBUG
+    // Chave intersticial de teste
+InterstitialAd.shared.loadAd(withAdUnitId: "ca-app-pub-3940256099942544/8691691433")
+#else
+InterstitialAd.shared.loadAd(withAdUnitId: "Sua chave de intersticial")
+#endif
+        
         self.view?.anchorPoint = CGPoint(x: 0.5, y: 0.5)
         self.physicsWorld.gravity = CGVector(dx: 0.0, dy: -9.8)
         
@@ -193,6 +204,9 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
                 spriteBall.removeFromParent()
                 leg.removeFromParent()
                 start = false
+                
+                showIntersticialAd()
+                
                 let newScene = GameSceneHighscore(size: self.size) // Crie uma nova instância da GameScene
                 newScene.scaleMode = self.scaleMode // Configure o modo de escala da nova cena
                 newScene.highscore = highscore
@@ -227,6 +241,13 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
 //        
         scoreNumberLabel.text =  String(format: "%02d", score)
 
+    }
+    
+    private func showIntersticialAd() {
+        if let ad = InterstitialAd.shared.interstitialAd {
+            ad.fullScreenContentDelegate = self
+            ad.present(fromRootViewController: self.view?.window?.rootViewController)
+        }
     }
 
     func resetBallPosition() {
