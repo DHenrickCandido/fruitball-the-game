@@ -25,9 +25,19 @@ struct GameSceneView: View {
     
     var body: some View {
         VStack {
+            
+            Button("Crash") {
+               fatalError("Crash was triggered")
+            }
+            
             SpriteView(scene: scene)
                 .frame(width: screenWidth, height: screenHeight, alignment: .center)
                 .edgesIgnoringSafeArea(.all)
+            
+            Button("Crash") {
+               fatalError("Crash was triggered")
+            }
+
         }
     }
 }
