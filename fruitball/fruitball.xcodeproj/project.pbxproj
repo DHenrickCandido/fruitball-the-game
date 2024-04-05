@@ -17,6 +17,7 @@
 		2593154B2BBD8B36007491AF /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 250122852BBCA8D6003F29DE /* GoogleService-Info.plist */; };
 		8B69E6662BB905B700C20413 /* SigmarOne-Regular.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 8B69E6652BB905B700C20413 /* SigmarOne-Regular.ttf */; };
 		8B69E6692BB9150400C20413 /* GameSceneHighscore.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8B69E6682BB9150400C20413 /* GameSceneHighscore.swift */; };
+		8B69E66C2BBECD7800C20413 /* GameSceneStart.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8B69E66B2BBECD7800C20413 /* GameSceneStart.swift */; };
 		8B950D332BAC531D00890EE0 /* fruitballApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8B950D322BAC531D00890EE0 /* fruitballApp.swift */; };
 		8B950D352BAC531D00890EE0 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8B950D342BAC531D00890EE0 /* ContentView.swift */; };
 		8B950D372BAC532000890EE0 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 8B950D362BAC532000890EE0 /* Assets.xcassets */; };
@@ -34,6 +35,7 @@
 		8B69E6672BB9066100C20413 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = Info.plist; sourceTree = "<group>"; };
 		8B69E6682BB9150400C20413 /* GameSceneHighscore.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameSceneHighscore.swift; sourceTree = "<group>"; };
 		8B69E66A2BBC41D500C20413 /* fruitball.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = fruitball.entitlements; sourceTree = "<group>"; };
+		8B69E66B2BBECD7800C20413 /* GameSceneStart.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameSceneStart.swift; sourceTree = "<group>"; };
 		8B950D2F2BAC531D00890EE0 /* fruitball.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = fruitball.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		8B950D322BAC531D00890EE0 /* fruitballApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = fruitballApp.swift; sourceTree = "<group>"; };
 		8B950D342BAC531D00890EE0 /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
@@ -102,6 +104,7 @@
 				8B69E6652BB905B700C20413 /* SigmarOne-Regular.ttf */,
 				8B950D322BAC531D00890EE0 /* fruitballApp.swift */,
 				8B950D342BAC531D00890EE0 /* ContentView.swift */,
+				8B69E66B2BBECD7800C20413 /* GameSceneStart.swift */,
 				8B950D422BAC53B700890EE0 /* GameScene.swift */,
 				8B69E6682BB9150400C20413 /* GameSceneHighscore.swift */,
 				8B950D402BAC53B700890EE0 /* GameSceneView.swift */,
@@ -243,6 +246,7 @@
 				8B950D442BAC53B800890EE0 /* GameSceneView.swift in Sources */,
 				8B950D462BAC53B800890EE0 /* GameScene.swift in Sources */,
 				254D00CF2BBD7F3B00FB41B4 /* BannerAdView.swift in Sources */,
+				8B69E66C2BBECD7800C20413 /* GameSceneStart.swift in Sources */,
 				8B69E6692BB9150400C20413 /* GameSceneHighscore.swift in Sources */,
 				254D00D32BBD7F6A00FB41B4 /* IntersticialAdView.swift in Sources */,
 				8B950D332BAC531D00890EE0 /* fruitballApp.swift in Sources */,

@@ -15,13 +15,13 @@ struct GameSceneView: View {
     let screenHeight = UIScreen.main.bounds.height
      
     
-#if DEBUG
-let bannerAdId = "ca-app-pub-3940256099942544/2435281174"
-let rewardAdId = "ca-app-pub-3940256099942544/5224354917"
-#else
-let bannerAdId = "ca-app-pub-2782621432038890/4981476662"
-let rewardAdId = "Seu id de reward"
-#endif
+    #if DEBUG
+    let bannerAdId = "ca-app-pub-3940256099942544/2435281174"
+    let rewardAdId = "ca-app-pub-3940256099942544/5224354917"
+    #else
+    let bannerAdId = "ca-app-pub-2782621432038890/4981476662"
+    let rewardAdId = "Seu id de reward"
+    #endif
     
     var scene: SKScene {
         let scene = GameScene()

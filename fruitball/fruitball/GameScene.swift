@@ -35,12 +35,21 @@ class GameScene: SKScene, SKPhysicsContactDelegate, GADFullScreenContentDelegate
     let backgroundImage = SKSpriteNode(imageNamed: "backgroundPark")
     let chaoCampo = SKSpriteNode(imageNamed: "chaoCampo")
     let goal = SKSpriteNode(imageNamed: "goal")
-    
+    let scoreLabel = SKLabelNode(fontNamed: "SigmarOne-Regular")
+
     var mudou = false
     
     var start = false
     
+    let playLabel = SKLabelNode(fontNamed: "SigmarOne-Regular")
+    let highscoreLabelTextStart = SKLabelNode(fontNamed: "SigmarOne-Regular")
+    let pontuacaoLabelTextStart = SKLabelNode(fontNamed: "SigmarOne-Regular")
+    let highscoreLabelStart = SKLabelNode(fontNamed: "SigmarOne-Regular")
+
+    let embaixadinhasLabel = SKLabelNode(fontNamed: "SigmarOne-Regular")
+
     
+    var startGameScene = false
     
     override func didMove(to view: SKView) {
         
@@ -53,6 +62,42 @@ InterstitialAd.shared.loadAd(withAdUnitId: "Sua chave de intersticial")
         
         self.view?.anchorPoint = CGPoint(x: 0.5, y: 0.5)
         self.physicsWorld.gravity = CGVector(dx: 0.0, dy: -9.8)
+                    
+        if startGameScene == false {
+            backgroundImage.removeFromParent()
+            chaoCampo.removeFromParent()
+            goal.removeFromParent()
+            scoreNumberLabel.removeFromParent()
+            spriteBall.removeFromParent()
+            leg.removeFromParent()
+            spriteBall.physicsBody?.affectedByGravity = false
+            showStartGame()
+            self.backgroundColor = UIColor(named: "ColorYellow") ?? SKColor.yellow
+
+        } else {
+            embaixadinhasLabel.removeFromParent()
+            highscoreLabelTextStart.removeFromParent()
+            pontuacaoLabelTextStart.removeFromParent()
+            playLabel.removeFromParent()
+            highscoreLabelStart.removeFromParent()
+            playGame()
+            
+            start = true
+            startGameScene = true
+        }
+        
+        GKLocalPlayer.local.authenticateHandler = { viewController, error in
+            guard error == nil else {
+                print("Erro ao autenticar jogador: \(error!.localizedDescription)")
+                return
+            }
+            if let viewController = viewController {
+                self.view?.window?.rootViewController?.present(viewController, animated: true, completion: nil)
+            }
+        }
+    }
+    
+    func playGame() {
         
         backgroundImage.position = CGPoint(x: size.width / 2, y: size.height / 2)
         backgroundImage.size = CGSize(width: 494*0.65, height: 844*0.65)
@@ -64,6 +109,8 @@ InterstitialAd.shared.loadAd(withAdUnitId: "Sua chave de intersticial")
         chaoCampo.size = CGSize(width: 423 * 0.7, height: 180 * 0.7)
         chaoCampo.zPosition = -1
         addChild(chaoCampo)
+        
+        animateChaoCampo()
         
         goal.position = CGPoint(x: size.width / 2, y: size.height / 2 - 55)
         goal.size = CGSize(width: 400 * 0.7, height: 227 * 0.7)
@@ -88,8 +135,8 @@ InterstitialAd.shared.loadAd(withAdUnitId: "Sua chave de intersticial")
         spriteBall.blendMode = .alpha
         
         spriteBall.physicsBody = SKPhysicsBody(texture: spriteBall.texture! , size: spriteBall.size)
+        spriteBall.physicsBody?.affectedByGravity = false
         addChild(spriteBall)
-        
         
         leg.size = CGSize(width: 105.6, height: 456)
         leg.position = CGPoint(x: 0, y: 200)
@@ -109,27 +156,80 @@ InterstitialAd.shared.loadAd(withAdUnitId: "Sua chave de intersticial")
         leg.physicsBody?.velocity = CGVector(dx: 0, dy: 0)
         addChild(leg)
         
+        showScoreAnimation()
+        
         highscore = UserDefaults.standard.integer(forKey: "highscore")
         
         self.physicsWorld.contactDelegate = self
         setupCollision()
-            
-        if start == false {
-            spriteBall.physicsBody?.affectedByGravity = false
-        } else {
-            spriteBall.physicsBody?.affectedByGravity = true
-        }
-        
-        GKLocalPlayer.local.authenticateHandler = { viewController, error in
-            guard error == nil else {
-                print("Erro ao autenticar jogador: \(error!.localizedDescription)")
-                return
-            }
-            if let viewController = viewController {
-                self.view?.window?.rootViewController?.present(viewController, animated: true, completion: nil)
-            }
-        }
     }
+    func showStartGame() {
+        highscore = UserDefaults.standard.integer(forKey: "highscore")
+
+        embaixadinhasLabel.text = "EMBAIXADINHAS"
+        embaixadinhasLabel.fontSize = 20
+        embaixadinhasLabel.fontColor = UIColor(named: "ColorScore")
+        embaixadinhasLabel.horizontalAlignmentMode = .center
+        embaixadinhasLabel.position = CGPoint(x: (UIScreen.main.bounds.width / 2) - 55, y:  270)
+        addChild(embaixadinhasLabel)
+        
+        highscoreLabelTextStart.text = "MELHOR"
+        highscoreLabelTextStart.fontSize = 20
+        highscoreLabelTextStart.fontColor = UIColor(.white)
+        highscoreLabelTextStart.horizontalAlignmentMode = .left
+        highscoreLabelTextStart.position = CGPoint(x: 35, y:  440)
+        addChild(highscoreLabelTextStart)
+        
+        pontuacaoLabelTextStart.text = "PONTUAÇÃO"
+        pontuacaoLabelTextStart.fontSize = 20
+        pontuacaoLabelTextStart.fontColor = UIColor(.white)
+        pontuacaoLabelTextStart.horizontalAlignmentMode = .left
+        pontuacaoLabelTextStart.position = CGPoint(x: 35, y:  420)
+        addChild(pontuacaoLabelTextStart)
+        
+        playLabel.text = "PLAY"
+        playLabel.fontSize = 40
+        playLabel.fontColor = UIColor(named: "ColorScore")
+        playLabel.horizontalAlignmentMode = .center
+        playLabel.position = CGPoint(x: (UIScreen.main.bounds.width / 2) - 55, y:  80)
+        addChild(playLabel)
+        
+        highscoreLabelStart.text = String(format: "%02d", highscore)
+        highscoreLabelStart.fontSize = 180
+        highscoreLabelStart.fontColor = UIColor(named: "ColorScore")
+        highscoreLabelStart.horizontalAlignmentMode = .center
+        highscoreLabelStart.position = CGPoint(x: (UIScreen.main.bounds.width / 2) - 55, y: 300)
+        addChild(highscoreLabelStart)
+    }
+    
+    func showScoreAnimation() {
+        let scaleUpAction = SKAction.scale(to: 1.2, duration: 0.5)
+        scaleUpAction.timingMode = .easeInEaseOut
+
+        let scaleDownAction = SKAction.scale(to: 1.0, duration: 0.2)
+        scaleDownAction.timingMode = .easeInEaseOut
+
+        let sequence = SKAction.sequence([scaleUpAction, scaleDownAction])
+
+        scoreNumberLabel.run(sequence)
+    }
+    
+    func animateChaoCampo() {
+        chaoCampo.position = CGPoint(x: size.width / 2, y: -chaoCampo.size.height)
+
+        let moveUpAction = SKAction.moveTo(y: chaoCampo.size.height / 2, duration: 1.0)
+        moveUpAction.timingMode = .easeInEaseOut
+
+        let bounceAction = SKAction.sequence([
+            SKAction.scale(to: 1.2, duration: 0.1),
+            SKAction.scale(to: 1.0, duration: 0.1)
+        ])
+
+        let sequence = SKAction.sequence([moveUpAction, bounceAction])
+
+        chaoCampo.run(sequence)
+    }
+    
     
     func didBegin(_ contact: SKPhysicsContact) {
         print("contact!!!")
@@ -155,11 +255,22 @@ InterstitialAd.shared.loadAd(withAdUnitId: "Sua chave de intersticial")
 
     func touchDown(atPoint pos : CGPoint) {
         if start == false {
+            embaixadinhasLabel.removeFromParent()
+            highscoreLabelTextStart.removeFromParent()
+            pontuacaoLabelTextStart.removeFromParent()
+            playLabel.removeFromParent()
+            highscoreLabelStart.removeFromParent()
+            self.backgroundColor = UIColor(.white)
+            if startGameScene == false {
+                playGame()
+            }
             start = true
-            spriteBall.physicsBody?.affectedByGravity = true
+            startGameScene = true
         } else {
             leg.physicsBody?.angularVelocity = 5
             print(leg.zRotation)
+            spriteBall.physicsBody?.affectedByGravity = true
+
         }
     }
     
@@ -171,8 +282,6 @@ InterstitialAd.shared.loadAd(withAdUnitId: "Sua chave de intersticial")
         leg.physicsBody?.angularVelocity = 0
         leg.zRotation = rotation
         leg.physicsBody?.velocity = CGVector(dx: 0, dy: 0)
-
-        
     }
     
     override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
@@ -194,8 +303,27 @@ InterstitialAd.shared.loadAd(withAdUnitId: "Sua chave de intersticial")
     
     override func update(_ currentTime: TimeInterval) {
         if spriteBall.position.y < -scene!.size.height * 1.3 {
+            if score > highscore {
+                highscore = score
+                
+                UserDefaults.standard.setValue(highscore, forKey: "highscore")
+                UserDefaults.standard.synchronize()
+                if GKLocalPlayer.local.isAuthenticated {
+                    let score = GKScore(leaderboardIdentifier: "leaderboard")
+                    score.value =  Int64(highscore)
+                    GKScore.report([score]) { error in
+                        if let error = error {
+                            print("Erro ao enviar pontuação: \(error.localizedDescription)")
+                        } else {
+                            print("Pontuação enviada com sucesso!")
+                        }
+                    }
+                }
+            }
             
             score = 0
+            
+            
             
             if let view = self.view {
                 backgroundImage.removeFromParent()
@@ -206,7 +334,7 @@ InterstitialAd.shared.loadAd(withAdUnitId: "Sua chave de intersticial")
                 leg.removeFromParent()
                 start = false
                 
-                showIntersticialAd()
+//                showIntersticialAd()
                 
                 let newScene = GameSceneHighscore(size: self.size) // Crie uma nova instância da GameScene
                 newScene.scaleMode = self.scaleMode // Configure o modo de escala da nova cena
@@ -214,19 +342,12 @@ InterstitialAd.shared.loadAd(withAdUnitId: "Sua chave de intersticial")
                 view.presentScene(newScene, transition: .crossFade(withDuration: 1.0)) // Apresente a nova cena com uma transição opcional
             }
             resetBallPosition()
-            if let view = self.view {
-                self.removeAllChildren()
-                self.removeAllActions()
-                self.removeFromParent()
-                let newScene = GameSceneHighscore(size: self.size)
-                newScene.scaleMode = self.scaleMode
-                newScene.highscore = highscore
-                view.presentScene(newScene, transition: .crossFade(withDuration: 1.0))
-            }
+
         }
         
         if spriteBall.position.y > heightInTouch * 1.2 && touch == true {
             score += 1
+            showScoreAnimation()
             touch = false
             
             if score % 10 == 0 && score != 0{
@@ -246,9 +367,7 @@ InterstitialAd.shared.loadAd(withAdUnitId: "Sua chave de intersticial")
             leg.physicsBody?.velocity = CGVector(dx: 0, dy: 0)
 
         }
-//        
         scoreNumberLabel.text =  String(format: "%02d", score)
-
     }
     
     private func showIntersticialAd() {
@@ -259,7 +378,6 @@ InterstitialAd.shared.loadAd(withAdUnitId: "Sua chave de intersticial")
     }
 
     func resetBallPosition() {
-        // Reposiciona a bola para o início
         if let view = self.view {
             spriteBall.position.y = initialPositionY
             spriteBall.position.x = initialPositionX

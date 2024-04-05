@@ -98,51 +98,43 @@ class GameSceneHighscore: SKScene, SKPhysicsContactDelegate {
         
         self.physicsWorld.contactDelegate = self
         
-        leaderboardButton.setTitle("Leaderboard", for: .normal)
-        leaderboardButton.frame = CGRect(x: 140, y: 50, width: 120, height: 30)
-        leaderboardButton.backgroundColor = UIColor.blue
-        leaderboardButton.layer.cornerRadius = 10
+        let image = UIImage(named: "Button")
+        leaderboardButton.setImage(image, for: .normal)
+        
+        leaderboardButton.frame = CGRect(x: 210, y: 0, width: 200, height: 200)
+
         leaderboardButton.titleLabel?.font = UIFont.boldSystemFont(ofSize: 16)
         leaderboardButton.addTarget(self, action: #selector(showLeaderboard), for: .touchDown)
         self.view?.addSubview(leaderboardButton)
-        
-//        let leaderboardButton = UIButton(type: .custom)
-//        leaderboardButton.setTitle("Leaderboard", for: .normal)
-//        leaderboardButton.frame = CGRect(x: 200, y: 50, width: 120, height: 50)
-//        leaderboardButton.backgroundColor = UIColor.blue
-//        leaderboardButton.layer.cornerRadius = 10
-//        leaderboardButton.addTarget(self, action: #selector(showLeaderboard), for: .touchDown)
-//        self.view?.addSubview(leaderboardButton)
-        
-        if !leaderboardButtonAdded {
-
-            
-            leaderboardButtonAdded = true
-        }
-        
-        if score > highscore {
-            highscore = score
-            
-            UserDefaults.standard.setValue(highscore, forKey: "highscore")
-            UserDefaults.standard.synchronize()
-            if GKLocalPlayer.local.isAuthenticated {
-                let score = GKScore(leaderboardIdentifier: "leaderboard")
-                score.value =  Int64(highscore)
-                GKScore.report([score]) { error in
-                    if let error = error {
-                        print("Erro ao enviar pontuação: \(error.localizedDescription)")
-                    } else {
-                        print("Pontuação enviada com sucesso!")
-                    }
-                }
-            }
-        }
-
     }
+
     
     
     func touchDown(atPoint pos : CGPoint) {
-        touch = true
+        leaderboardButton.removeFromSuperview()
+        chaoCampo.removeFromParent()
+        highscoreLabel.removeFromParent()
+        scoreNumberLabel.removeFromParent()
+        spriteBall.removeFromParent()
+        self.removeAllActions()
+        self.removeFromParent()
+        self.removeAllChildren()
+        if let view = self.view {
+            let newScene = GameScene(size: self.size)
+            newScene.removeFromParent()
+            newScene.removeAllChildren()
+            newScene.embaixadinhasLabel.removeFromParent()
+            newScene.highscoreLabelTextStart.removeFromParent()
+            newScene.pontuacaoLabelTextStart.removeFromParent()
+            newScene.playLabel.removeFromParent()
+            newScene.highscoreLabelStart.removeFromParent()
+            newScene.startGameScene = true
+            newScene.leg.physicsBody?.angularVelocity = 5
+            newScene.start = false
+            newScene.spriteBall.physicsBody?.affectedByGravity = false
+            view.presentScene(newScene, transition: .crossFade(withDuration: 1.0))
+        }
+
     }
     
     func touchMoved(toPoint pos : CGPoint) {
@@ -170,23 +162,13 @@ class GameSceneHighscore: SKScene, SKPhysicsContactDelegate {
     }
     
     override func willMove(from view: SKView) {
-        // Remover o botão da tela quando a cena for alterada
-//        leaderboardButton = nil
+
     }
     override func update(_ currentTime: TimeInterval) {
         
         if touch == true {
-
-            self.removeAllChildren()
-            self.removeAllActions()
-            self.removeFromParent()
-            leaderboardButton.removeFromSuperview()
-
-            if let view = self.view {
-                let newScene = GameScene(size: self.size)
-                newScene.scaleMode = self.scaleMode
-                view.presentScene(newScene, transition: .crossFade(withDuration: 1.0))
-            }
+            
+            
         }
     }
     
@@ -197,8 +179,6 @@ class GameSceneHighscore: SKScene, SKPhysicsContactDelegate {
         gcViewController.viewState = .leaderboards
         gcViewController.leaderboardIdentifier = "leaderboard"
         viewController?.present(gcViewController, animated: true, completion: nil)
-        
-        
     }
     
     @objc func replay() {
