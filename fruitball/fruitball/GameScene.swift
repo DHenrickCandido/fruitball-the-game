@@ -15,7 +15,7 @@ class GameScene: SKScene, SKPhysicsContactDelegate, GADFullScreenContentDelegate
     var kick = CGFloat(5)
     
     var rotation: CGFloat = 0.0
-    
+
     var initialPositionY: CGFloat = UIScreen.main.bounds.height - 300
     var initialPositionX: CGFloat = (UIScreen.main.bounds.width / 2) - 20
     
@@ -49,16 +49,28 @@ class GameScene: SKScene, SKPhysicsContactDelegate, GADFullScreenContentDelegate
     let embaixadinhasLabel = SKLabelNode(fontNamed: "SigmarOne-Regular")
 
     
-    var startGameScene = false
+    var startGameScene = true
+    
+    @Binding var showGameOver: Bool
+    
+    required init?(coder aDecoder: NSCoder) {
+           fatalError("init(coder:) has not been implemented")
+       }
+       
+    init(size: CGSize, showGameOver: Binding<Bool>) {
+        self._showGameOver = showGameOver
+        super.init(size: size)
+    }
+    
     
     override func didMove(to view: SKView) {
         
-#if DEBUG
-    // Chave intersticial de teste
-InterstitialAd.shared.loadAd(withAdUnitId: "ca-app-pub-3940256099942544/8691691433")
-#else
-InterstitialAd.shared.loadAd(withAdUnitId: "Sua chave de intersticial")
-#endif
+    #if DEBUG
+        // Chave intersticial de teste
+    InterstitialAd.shared.loadAd(withAdUnitId: "ca-app-pub-3940256099942544/8691691433")
+    #else
+    InterstitialAd.shared.loadAd(withAdUnitId: "Sua chave de intersticial")
+    #endif
         
         self.view?.anchorPoint = CGPoint(x: 0.5, y: 0.5)
         self.physicsWorld.gravity = CGVector(dx: 0.0, dy: -9.8)
@@ -85,18 +97,64 @@ InterstitialAd.shared.loadAd(withAdUnitId: "Sua chave de intersticial")
             start = true
             startGameScene = true
         }
-        
-        GKLocalPlayer.local.authenticateHandler = { viewController, error in
-            guard error == nil else {
-                print("Erro ao autenticar jogador: \(error!.localizedDescription)")
-                return
-            }
-            if let viewController = viewController {
-                self.view?.window?.rootViewController?.present(viewController, animated: true, completion: nil)
-            }
-        }
     }
-    
+    func playGameNoAdd() {
+        backgroundImage.position = CGPoint(x: size.width / 2, y: size.height / 2)
+        backgroundImage.size = CGSize(width: 494*0.65, height: 844*0.65)
+        backgroundImage.zPosition = -2
+        
+        chaoCampo.position = CGPoint(x: size.width / 2, y: 20)
+        chaoCampo.size = CGSize(width: 423 * 0.7, height: 180 * 0.7)
+        chaoCampo.zPosition = -1
+                
+        goal.position = CGPoint(x: size.width / 2, y: size.height / 2 - 55)
+        goal.size = CGSize(width: 400 * 0.7, height: 227 * 0.7)
+        goal.zPosition = -1
+        
+        scoreNumberLabel.text = String(format: "%02d", score)
+        scoreNumberLabel.fontSize = 180
+        scoreNumberLabel.fontColor = UIColor(named: "ColorScore")
+        scoreNumberLabel.horizontalAlignmentMode = .center
+        scoreNumberLabel.position = CGPoint(x: (UIScreen.main.bounds.width / 2) - 55, y: 330)
+        
+        rotation = 1
+        
+        spriteBall.position = CGPoint(x: initialPositionX, y: initialPositionY )
+        spriteBall.anchorPoint = CGPoint(x: 0.5, y: 0.5)
+        spriteBall.size = CGSize(width: 50, height: 50)
+        spriteBall.zPosition = 1
+        spriteBall.name = "ballNode"
+        spriteBall.alpha = 1
+        spriteBall.blendMode = .alpha
+        
+        spriteBall.physicsBody = SKPhysicsBody(texture: spriteBall.texture! , size: spriteBall.size)
+        spriteBall.physicsBody?.affectedByGravity = false
+        
+        leg.size = CGSize(width: 105.6, height: 456)
+        leg.position = CGPoint(x: 0, y: 200)
+        
+        leg.physicsBody = SKPhysicsBody(texture: leg.texture! , size: leg.size)
+        leg.physicsBody?.affectedByGravity = false
+        leg.physicsBody?.pinned = true
+        leg.physicsBody?.allowsRotation = true
+        leg.physicsBody?.isDynamic = true
+        leg.zRotation = rotation
+        leg.physicsBody?.mass = 5
+        leg.physicsBody?.friction = 0.2
+        leg.physicsBody?.restitution = 0.2
+        leg.physicsBody?.linearDamping = 0.1
+        leg.physicsBody?.angularDamping = 0.1
+        leg.physicsBody?.angularVelocity = 0
+        leg.physicsBody?.velocity = CGVector(dx: 0, dy: 0)
+
+        
+        showScoreAnimation()
+        
+        highscore = UserDefaults.standard.integer(forKey: "highscore")
+        
+        self.physicsWorld.contactDelegate = self
+        setupCollision()
+    }
     func playGame() {
         
         backgroundImage.position = CGPoint(x: size.width / 2, y: size.height / 2)
@@ -125,7 +183,7 @@ InterstitialAd.shared.loadAd(withAdUnitId: "Sua chave de intersticial")
         addChild(scoreNumberLabel)
         
         rotation = 1
-        
+
         spriteBall.position = CGPoint(x: initialPositionX, y: initialPositionY )
         spriteBall.anchorPoint = CGPoint(x: 0.5, y: 0.5)
         spriteBall.size = CGSize(width: 50, height: 50)
@@ -137,6 +195,9 @@ InterstitialAd.shared.loadAd(withAdUnitId: "Sua chave de intersticial")
         spriteBall.physicsBody = SKPhysicsBody(texture: spriteBall.texture! , size: spriteBall.size)
         spriteBall.physicsBody?.affectedByGravity = false
         addChild(spriteBall)
+        
+        leg.size = CGSize(width: 216, height: 216)
+        leg.position = CGPoint(x: 100, y: 200)
         
         leg.size = CGSize(width: 105.6, height: 456)
         leg.position = CGPoint(x: 0, y: 200)
@@ -155,6 +216,7 @@ InterstitialAd.shared.loadAd(withAdUnitId: "Sua chave de intersticial")
         leg.physicsBody?.angularVelocity = 0
         leg.physicsBody?.velocity = CGVector(dx: 0, dy: 0)
         addChild(leg)
+
         
         showScoreAnimation()
         
@@ -254,23 +316,25 @@ InterstitialAd.shared.loadAd(withAdUnitId: "Sua chave de intersticial")
     }
 
     func touchDown(atPoint pos : CGPoint) {
-        if start == false {
-            embaixadinhasLabel.removeFromParent()
-            highscoreLabelTextStart.removeFromParent()
-            pontuacaoLabelTextStart.removeFromParent()
-            playLabel.removeFromParent()
-            highscoreLabelStart.removeFromParent()
-            self.backgroundColor = UIColor(.white)
-            if startGameScene == false {
-                playGame()
+        if showGameOver == false {
+            if start == false {
+                embaixadinhasLabel.removeFromParent()
+                highscoreLabelTextStart.removeFromParent()
+                pontuacaoLabelTextStart.removeFromParent()
+                playLabel.removeFromParent()
+                highscoreLabelStart.removeFromParent()
+                self.backgroundColor = UIColor(.white)
+                if startGameScene == false {
+                    playGame()
+                }
+                start = true
+                startGameScene = true
+            } else {
+                leg.physicsBody?.angularVelocity = 5
+                print(leg.zRotation)
+                spriteBall.physicsBody?.affectedByGravity = true
+                
             }
-            start = true
-            startGameScene = true
-        } else {
-            leg.physicsBody?.angularVelocity = 5
-            print(leg.zRotation)
-            spriteBall.physicsBody?.affectedByGravity = true
-
         }
     }
     
@@ -302,72 +366,60 @@ InterstitialAd.shared.loadAd(withAdUnitId: "Sua chave de intersticial")
     
     
     override func update(_ currentTime: TimeInterval) {
-        if spriteBall.position.y < -scene!.size.height * 1.3 {
-            if score > highscore {
-                highscore = score
-                
-                UserDefaults.standard.setValue(highscore, forKey: "highscore")
-                UserDefaults.standard.synchronize()
-                if GKLocalPlayer.local.isAuthenticated {
-                    let score = GKScore(leaderboardIdentifier: "leaderboard")
-                    score.value =  Int64(highscore)
-                    GKScore.report([score]) { error in
-                        if let error = error {
-                            print("Erro ao enviar pontuação: \(error.localizedDescription)")
-                        } else {
-                            print("Pontuação enviada com sucesso!")
+        if showGameOver == false {
+            if spriteBall.position.y < -scene!.size.height * 1.3 {
+                if score > highscore {
+                    highscore = score
+                    
+                    UserDefaults.standard.setValue(highscore, forKey: "highscore")
+                    UserDefaults.standard.synchronize()
+                    if GKLocalPlayer.local.isAuthenticated {
+                        let score = GKScore(leaderboardIdentifier: "leaderboard")
+                        score.value =  Int64(highscore)
+                        GKScore.report([score]) { error in
+                            if let error = error {
+                                print("Erro ao enviar pontuação: \(error.localizedDescription)")
+                            } else {
+                                print("Pontuação enviada com sucesso!")
+                            }
                         }
                     }
                 }
-            }
-            
-            score = 0
-            
-            
-            
-            if let view = self.view {
-                backgroundImage.removeFromParent()
-                chaoCampo.removeFromParent()
-                goal.removeFromParent()
-                scoreNumberLabel.removeFromParent()
-                spriteBall.removeFromParent()
-                leg.removeFromParent()
+                
+                score = 0
                 start = false
-                
-//                showIntersticialAd()
-                
-                let newScene = GameSceneHighscore(size: self.size) // Crie uma nova instância da GameScene
-                newScene.scaleMode = self.scaleMode // Configure o modo de escala da nova cena
-                newScene.highscore = highscore
-                view.presentScene(newScene, transition: .crossFade(withDuration: 1.0)) // Apresente a nova cena com uma transição opcional
-            }
-            resetBallPosition()
-
-        }
-        
-        if spriteBall.position.y > heightInTouch * 1.2 && touch == true {
-            score += 1
-            showScoreAnimation()
-            touch = false
-            
-            if score % 10 == 0 && score != 0{
-                if currentFruit < 2 {
-                    currentFruit += 1
-                } else {
-                    currentFruit = 0
-                }
+                playGameNoAdd()
+                currentFruit = 0
                 spriteBall.texture = SKTexture(imageNamed: fruits[currentFruit])
+                showGameOver = true
+
                 
             }
+            
+            if spriteBall.position.y > heightInTouch * 1.2 && touch == true {
+                score += 1
+                showScoreAnimation()
+                touch = false
+                
+                if score % 10 == 0 && score != 0{
+                    if currentFruit < 2 {
+                        currentFruit += 1
+                    } else {
+                        currentFruit = 0
+                    }
+                    spriteBall.texture = SKTexture(imageNamed: fruits[currentFruit])
+                    
+                }
+            }
+            
+            if leg.zRotation >= 2 {
+                leg.zRotation = rotation
+                leg.physicsBody?.angularVelocity = 0
+                leg.physicsBody?.velocity = CGVector(dx: 0, dy: 0)
+                
+            }
+            scoreNumberLabel.text =  String(format: "%02d", score)
         }
-        
-        if leg.zRotation >= 2 {
-            leg.zRotation = rotation
-            leg.physicsBody?.angularVelocity = 0
-            leg.physicsBody?.velocity = CGVector(dx: 0, dy: 0)
-
-        }
-        scoreNumberLabel.text =  String(format: "%02d", score)
     }
     
     private func showIntersticialAd() {

@@ -19,7 +19,7 @@ struct fruitballApp: App {
 
     var body: some Scene {
         WindowGroup {
-            GameSceneView() // Primeira cena chamada
+            MenuStartView() // Primeira cena chamada
         }
     }
 }

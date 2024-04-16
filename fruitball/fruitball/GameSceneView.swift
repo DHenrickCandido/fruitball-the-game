@@ -23,9 +23,11 @@ struct GameSceneView: View {
     let rewardAdId = "Seu id de reward"
     #endif
     
+    @State var showGameOver = false
+    @State var path = NavigationPath()
+
     var scene: SKScene {
-        let scene = GameScene()
-        scene.size = CGSize(width: 288, height: 512)
+        let scene = GameScene(size: CGSize(width: 288, height: 512), showGameOver: $showGameOver)
         
         scene.scaleMode = .fill
         scene.backgroundColor = .white
@@ -34,20 +36,27 @@ struct GameSceneView: View {
     }
     
     var body: some View {
-        ZStack {
-            
-            Button("Crash") {
-               fatalError("Crash was triggered")
+            ZStack {
+                Button("Crash") {
+                    fatalError("Crash was triggered")
+                }
+                
+                BannerAd(adUnitId: bannerAdId)
+                
+                SpriteView(scene: scene)
+                    .frame(width: screenWidth, height: screenHeight, alignment: .center)
+                    .edgesIgnoringSafeArea(.all)
+                NavigationLink(
+                    destination: GameOverView()
+                        .navigationBarBackButtonHidden(true),
+                    isActive: $showGameOver,
+                    label: { Text("") }
+                )
             }
-            
-            BannerAd(adUnitId: bannerAdId)
-            
-            SpriteView(scene: scene)
-                .frame(width: screenWidth, height: screenHeight, alignment: .center)
-                .edgesIgnoringSafeArea(.all)
-
+            .navigationBarBackButtonHidden(true)
+            .background(.red)
         }
-    }
+    
 }
 
 struct GameSceneView_Previews: PreviewProvider {
