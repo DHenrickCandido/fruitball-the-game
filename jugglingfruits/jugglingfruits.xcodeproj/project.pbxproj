@@ -7,6 +7,11 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		8B11BD182BD68E010063A50C /* SigmarOne-Regular.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 8B11BD172BD68E010063A50C /* SigmarOne-Regular.ttf */; };
+		8B11BD1E2BD6E5AA0063A50C /* FacebookCore in Frameworks */ = {isa = PBXBuildFile; productRef = 8B11BD1D2BD6E5AA0063A50C /* FacebookCore */; };
+		8B11BD212BD6E5B60063A50C /* NavigationTransitions in Frameworks */ = {isa = PBXBuildFile; productRef = 8B11BD202BD6E5B60063A50C /* NavigationTransitions */; };
+		8B11BD242BD7F9580063A50C /* AdSupport.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8B11BD232BD7F9580063A50C /* AdSupport.framework */; };
+		8B11BD262BD7F9620063A50C /* AppTrackingTransparency.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8B11BD252BD7F9620063A50C /* AppTrackingTransparency.framework */; };
 		8B5292232BD3774A0022DB9C /* jugglingfruitsApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8B5292222BD3774A0022DB9C /* jugglingfruitsApp.swift */; };
 		8B5292272BD3774C0022DB9C /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 8B5292262BD3774C0022DB9C /* Assets.xcassets */; };
 		8B52922A2BD3774C0022DB9C /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 8B5292292BD3774C0022DB9C /* Preview Assets.xcassets */; };
@@ -15,11 +20,12 @@
 		8B5292362BD3B09B0022DB9C /* GameOverView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8B5292352BD3B09B0022DB9C /* GameOverView.swift */; };
 		8B5292382BD3B0AB0022DB9C /* StartViewNew.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8B5292372BD3B0AB0022DB9C /* StartViewNew.swift */; };
 		8B52923A2BD3B0C10022DB9C /* GameService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8B5292392BD3B0C10022DB9C /* GameService.swift */; };
-		8B52923E2BD3B1520022DB9C /* NavigationTransitions in Frameworks */ = {isa = PBXBuildFile; productRef = 8B52923D2BD3B1520022DB9C /* NavigationTransitions */; };
-		8B5292432BD3BF550022DB9C /* SigmarOne-Regular.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 8B5292422BD3BF550022DB9C /* SigmarOne-Regular.ttf */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		8B11BD172BD68E010063A50C /* SigmarOne-Regular.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "SigmarOne-Regular.ttf"; sourceTree = "<group>"; };
+		8B11BD232BD7F9580063A50C /* AdSupport.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AdSupport.framework; path = System/Library/Frameworks/AdSupport.framework; sourceTree = SDKROOT; };
+		8B11BD252BD7F9620063A50C /* AppTrackingTransparency.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AppTrackingTransparency.framework; path = System/Library/Frameworks/AppTrackingTransparency.framework; sourceTree = SDKROOT; };
 		8B52921F2BD3774A0022DB9C /* jugglingfruits.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = jugglingfruits.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		8B5292222BD3774A0022DB9C /* jugglingfruitsApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = jugglingfruitsApp.swift; sourceTree = "<group>"; };
 		8B5292262BD3774C0022DB9C /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
@@ -31,7 +37,6 @@
 		8B5292392BD3B0C10022DB9C /* GameService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameService.swift; sourceTree = "<group>"; };
 		8B52923F2BD3B31A0022DB9C /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = Info.plist; sourceTree = "<group>"; };
 		8B5292412BD3BDF60022DB9C /* jugglingfruits.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = jugglingfruits.entitlements; sourceTree = "<group>"; };
-		8B5292422BD3BF550022DB9C /* SigmarOne-Regular.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; name = "SigmarOne-Regular.ttf"; path = "../../Projects/Apple/fruitball-main/fruitball-the-game/fruitball/fruitball/SigmarOne-Regular.ttf"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -39,18 +44,31 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				8B52923E2BD3B1520022DB9C /* NavigationTransitions in Frameworks */,
+				8B11BD262BD7F9620063A50C /* AppTrackingTransparency.framework in Frameworks */,
+				8B11BD242BD7F9580063A50C /* AdSupport.framework in Frameworks */,
+				8B11BD1E2BD6E5AA0063A50C /* FacebookCore in Frameworks */,
+				8B11BD212BD6E5B60063A50C /* NavigationTransitions in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		8B11BD222BD7F9580063A50C /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				8B11BD252BD7F9620063A50C /* AppTrackingTransparency.framework */,
+				8B11BD232BD7F9580063A50C /* AdSupport.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
 		8B5292162BD3774A0022DB9C = {
 			isa = PBXGroup;
 			children = (
 				8B5292212BD3774A0022DB9C /* jugglingfruits */,
 				8B5292202BD3774A0022DB9C /* Products */,
+				8B11BD222BD7F9580063A50C /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -69,8 +87,8 @@
 				8B52923F2BD3B31A0022DB9C /* Info.plist */,
 				8B5292332BD3B06F0022DB9C /* GameSceneView.swift */,
 				8B5292352BD3B09B0022DB9C /* GameOverView.swift */,
-				8B5292422BD3BF550022DB9C /* SigmarOne-Regular.ttf */,
 				8B5292222BD3774A0022DB9C /* jugglingfruitsApp.swift */,
+				8B11BD172BD68E010063A50C /* SigmarOne-Regular.ttf */,
 				8B5292392BD3B0C10022DB9C /* GameService.swift */,
 				8B5292372BD3B0AB0022DB9C /* StartViewNew.swift */,
 				8B5292312BD3B0560022DB9C /* GameScene.swift */,
@@ -105,7 +123,8 @@
 			);
 			name = jugglingfruits;
 			packageProductDependencies = (
-				8B52923D2BD3B1520022DB9C /* NavigationTransitions */,
+				8B11BD1D2BD6E5AA0063A50C /* FacebookCore */,
+				8B11BD202BD6E5B60063A50C /* NavigationTransitions */,
 			);
 			productName = jugglingfruits;
 			productReference = 8B52921F2BD3774A0022DB9C /* jugglingfruits.app */;
@@ -136,7 +155,8 @@
 			);
 			mainGroup = 8B5292162BD3774A0022DB9C;
 			packageReferences = (
-				8B52923C2BD3B1520022DB9C /* XCRemoteSwiftPackageReference "swiftui-navigation-transitions" */,
+				8B11BD1C2BD6E5A90063A50C /* XCRemoteSwiftPackageReference "facebook-ios-sdk" */,
+				8B11BD1F2BD6E5B60063A50C /* XCRemoteSwiftPackageReference "swiftui-navigation-transitions" */,
 			);
 			productRefGroup = 8B5292202BD3774A0022DB9C /* Products */;
 			projectDirPath = "";
@@ -154,7 +174,7 @@
 			files = (
 				8B52922A2BD3774C0022DB9C /* Preview Assets.xcassets in Resources */,
 				8B5292272BD3774C0022DB9C /* Assets.xcassets in Resources */,
-				8B5292432BD3BF550022DB9C /* SigmarOne-Regular.ttf in Resources */,
+				8B11BD182BD68E010063A50C /* SigmarOne-Regular.ttf in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -390,7 +410,15 @@
 /* End XCConfigurationList section */
 
 /* Begin XCRemoteSwiftPackageReference section */
-		8B52923C2BD3B1520022DB9C /* XCRemoteSwiftPackageReference "swiftui-navigation-transitions" */ = {
+		8B11BD1C2BD6E5A90063A50C /* XCRemoteSwiftPackageReference "facebook-ios-sdk" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/facebook/facebook-ios-sdk";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 17.0.0;
+			};
+		};
+		8B11BD1F2BD6E5B60063A50C /* XCRemoteSwiftPackageReference "swiftui-navigation-transitions" */ = {
 			isa = XCRemoteSwiftPackageReference;
 			repositoryURL = "https://github.com/davdroman/swiftui-navigation-transitions.git";
 			requirement = {
@@ -401,9 +429,14 @@
 /* End XCRemoteSwiftPackageReference section */
 
 /* Begin XCSwiftPackageProductDependency section */
-		8B52923D2BD3B1520022DB9C /* NavigationTransitions */ = {
+		8B11BD1D2BD6E5AA0063A50C /* FacebookCore */ = {
 			isa = XCSwiftPackageProductDependency;
-			package = 8B52923C2BD3B1520022DB9C /* XCRemoteSwiftPackageReference "swiftui-navigation-transitions" */;
+			package = 8B11BD1C2BD6E5A90063A50C /* XCRemoteSwiftPackageReference "facebook-ios-sdk" */;
+			productName = FacebookCore;
+		};
+		8B11BD202BD6E5B60063A50C /* NavigationTransitions */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 8B11BD1F2BD6E5B60063A50C /* XCRemoteSwiftPackageReference "swiftui-navigation-transitions" */;
 			productName = NavigationTransitions;
 		};
 /* End XCSwiftPackageProductDependency section */
